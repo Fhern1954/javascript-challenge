@@ -1,28 +1,39 @@
 // from data.js
-var tableData = data;
+const tableData = data;
 
 // YOUR CODE HERE!
 var tbody = d3.select("tbody");
 
 //Get UFO Sighting values for each column
-tableData.forEach(function(ufoSighting) {
-    console.log(ufoSighting);
-    //Add one table row for eacg sighting
-    var row = tbody.append("tr");
+// 
+tableData.forEach(row => {
+    tbody.append("tr");
+    for (key in row){
+        const cell = tbody.append("td");
+        cell.text(row[key]);
+    }
+});
+    //Add one table row for each sighting
+    //var row = tbody.append("tr");
 
     //Use Object.entries to collect each values for each UFO Sighting
-    Object.entries(ufoSighting).forEach(function([key, value]) {
-        console.log(key, value);
-        // Add a cell to each row for each value
-        var cell = row.append("td");
-        cell.text(value);
-    });
-});
+//     Object.entries(ufoSighting).forEach(function([key, value]) {
+//         console.log(key, value);
+//         // Add a cell to each row for each value
+//         var cell = row.append("td");
+//         cell.text(value);
+//     });
+// });
 
 
 //Button
 var button = d3.select("#filter-btn");
-button.on("click", function() {
+var form = d3.select("#datetime");
+button.on("click", filterData);
+form.on("submit", filterData); 
+
+function filterData() {
+    d3.event.preventDefault();
 
     tbody.html("");
 
@@ -46,4 +57,4 @@ button.on("click", function() {
         cell.text(value);
     });
     });
-});
+};
