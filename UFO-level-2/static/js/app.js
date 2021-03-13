@@ -17,7 +17,7 @@ tableData.forEach(row => {
     }
 });
 
-var btnSearch = d3.select("#btnSearch");
+var btnSearch = d3.select("#filter-btn");
 var btnReset = d3.select("#btnReset");
 
 var searchDate = d3.select("#searchDate");
@@ -28,22 +28,22 @@ var searchShape = d3.select("#searchShape");
 
 //Create HTML table
 function loadTableRows(tableData) {
-    //Delete previous table, if one exists
+        //Delete previous table, if one exists
     tbody.html("");
     //Create new table
     tableData.forEach(function(ufoSighting) {
-            console.log(ufoSighting);
-            //Add one table row for eacg sighting
-            var row = tbody.append("tr");
+        console.log(ufoSighting);
+        //Add one table row for eacg sighting
+        var row = tbody.append("tr");
         
-            //Use Object.entries to collect each values for each UFO Sighting
-            Object.entries(ufoSighting).forEach(function([key, value]) {
-                console.log(key, value);
-                // Add a cell to each row for each value
-                var cell = row.append("td");
-                cell.text(value);
-            });
+        //Use Object.entries to collect each values for each UFO Sighting
+        Object.entries(ufoSighting).forEach(function([key, value]) {
+            console.log(key, value);
+            // Add a cell to each row for each value
+            var cell = row.append("td");
+            cell.text(value);
         });
+    });
 }
     
         //Call the function
@@ -51,36 +51,56 @@ loadTableRows(tableData);
 
 //Event Listeners
 
-btnSearch.on("click", loadTableRows) {
+btnSearch.on("click", function(event) { 
+    console.log("button clicked");
     //Prevent refresh
-        d3.event.preventDefault();
+        //d3.event.preventDefault();
 
     //Get what the user searched for
-    var searchedDate = searchDate.property("value");
-    var searchedCity = searchCity.property("value");
-    var searchedState = searchState.property("value");
-    var searchedCountry = searchCountry.property("value");
-    var searchedShape = searchShape.property("value");
+    // var searchedDate = d3.select("#datetime")searchDate.property("value");
+    // var searchedCity = searchCity.property("value");
+    // var searchedState = searchState.property("value");
+    // var searchedCountry = searchCountry.property("value");
+    // var searchedShape = searchShape.property("value");
 
-    var filteredData = tableData.filter(sighting => 
-        sighting.datetime === searchedDate &&
-        sighting.city === searchedCity &&
-        sighting.state === searchedState &&
-        sighting.country === searchedCountry &&
-        sighting.shape === searchedShape);
+    // var filteredData = tableData.filter(sighting => 
+    //     sighting.datetime === searchedDate &&
+    //     sighting.city === searchedCity &&
+    //     sighting.state === searchedState &&
+    //     sighting.country === searchedCountry &&
+    //     sighting.shape === searchedShape);
 
-    
-        console.log(filteredData);
+    filteredData = tableData;
+    console.log(searchedDate);
+
+    if (searchedDate !== null) {
+        filteredData = filteredData.filter(sighting.datetime === searchedDate.property("value"))
+    }
+    if (searchedCity !== null) {
+        filteredData = filteredData.filter(sighting.city === searchedCity)
+    }
+    if (searchedState !== null) {
+        filteredData = filteredData.filter(sighting.state === searchedState)
+    }
+    if (searchedCountry !== null) {
+        filteredData = filteredData.filter(sighting.country === searchedCountry)
+    }
+    if (searchedShape !== null) {
+        filteredData = filteredData.filter(sighting.shape === searchedShape)
+    }
+
+loadTableRows(filteredData);
+    })
+        //console.log(filteredData);
 
         //Create New Table
-    filteredData.forEach(function(selections){
+    //filteredData.forEach(function(selections){
         //Add one table row for each UFO Sighting filtered
-        var row = tbody.append("tr");
-        //Use Object.entries to append a cell to the row for each value
-        Object.entries(selections).forEach(function([key, value]) {
-            console.log(key,value);
-            var cell = row.append("td");
-            cell.text(value);
-        });
-    })
-}
+        // var row = tbody.append("tr");
+        // //Use Object.entries to append a cell to the row for each value
+        // Object.entries(selections).forEach(function([key, value]) {
+        //     console.log(key,value);
+        //     var cell = row.append("td");
+        //     cell.text(value);
+        // });
+    //})

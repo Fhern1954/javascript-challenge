@@ -28,7 +28,7 @@ tableData.forEach(row => {
 
 //Button
 var button = d3.select("#filter-btn");
-var form = d3.select("#datetime");
+var form = d3.select("#date-form");
 button.on("click", filterData);
 form.on("submit", filterData); 
 
