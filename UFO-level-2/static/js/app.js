@@ -20,8 +20,11 @@ tableData.forEach(row => {
 //Event Listeners
 var button = d3.select("#filter-btn");
 var form = d3.select("#user-form");
+var filters = d3.selectAll("#filters");
 button.on("click", filterData);
 form.on("submit", filterData);
+filters.on("change", filterData);
+
 
 //Collect input Elements
 var userDate = d3.select("#datetime");
@@ -105,32 +108,37 @@ loadTableRows(tableData);
     function filterData (tableData) {
         d3.event.preventDefault;
         var filteredData = data;
-        //console.log(filteredData);
+        console.log(filteredData);
 
-        if (userDate !== null) {
+
+        if (userDate.property("value")) {
             searchDate = userDate.property("value");
-            console.log(searchDate);
             filteredData = filteredData.filter(sighting => sighting.datetime === searchDate);
+            console.log(filteredData);
         }        
-        if (userCity !== null) {
+        if (userCity.property("value")) {
             searchCity = userCity.property("value").toLowerCase();
             filteredData = filteredData.filter(sighting => sighting.city === searchCity);
+            console.log(filteredData);
         }        
-        if (userState !== null) {
+        if (userState.property("value")) {
             searchState = userState.property("value").toLowerCase();
             filteredData = filteredData.filter(sighting => sighting.state === searchState);
+            console.log(filteredData);
         }       
-        if (userCountry !== null) {
+        if (userCountry.property("value")) {
             searchCountry = userCountry.property("value").toLowerCase();
             filteredData = filteredData.filter(sighting => sighting.country === searchCountry);
+            console.log(filteredData);
         }        
-        if (userShape !== null) {
+        if (userShape.property("value")) {
             searchShape = userShape.property("value").toLowerCase();
             filteredData = filteredData.filter(sighting => sighting.shape === searchShape);
+            console.log(filteredData);
         }
-        else {filteredData = filteredData}
+
         console.log(filteredData);
-    loadTableRows(filteredData);
+        loadTableRows(filteredData);
     }
         
 
