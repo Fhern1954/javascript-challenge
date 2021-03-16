@@ -57,54 +57,6 @@ function loadTableRows(tableData) {
 loadTableRows(tableData);
 
 
-
-// btnSearch.on("click", function(event) { 
-    console.log("button clicked");
-    
-
-    // function filterData (tableData) {
-    //     //Prevent refresh
-    //     d3.event.preventDefault;
-
-    //     let filter = 0;
-
-        // let searchDate = userDate.property("value");
-        // let searchCity = userCity.property("value").toLowerCase();
-        // let searchState = userState.property("value").toLowerCase();
-        // let searchCountry = userCountry.property("value").toLowerCase();
-        // let searchShape = userShape.property("value").toLowerCase();
-
-        //only filter if user entered a value
-        // if (searchDate || searchCity || searchState || searchCountry || searchShape) {
-        //     filtered = 1;
-
-        // //use only the fields that have values entered and dynamically build up filter conditions
-        // let userArray = [["datetime", searchDate], ["city", searchCity], ["state", searchState], ["country", searchCountry], ["shape", searchShape]];
-        // let existingArray = userArray.filter(user => user[1] !== "");
-        // let condition = existingArray.map(arr => "obs" + arr[0] + "===" + "'" + arr[1] + "'").join(" && ");
-
-        //What the next line evaluates.
-        //let filteredTable = tableData.filter(obs =>(obs.datetime == userDate) &&
-        //                                         (obs.city == userCity) &&
-        //                                         (obs.state == userState) &&
-        //                                         (obs.country == userCountry) &&
-        //                                         (obs.shape == userShape) );
-
-    //         let filterData = tableData.filter(obs => eval(condition));
-            
-    //         tbody.html("");
-
-    //         filterData.forEach(row => {
-    //             tbody.append("tr");
-
-    //             for (key in row){
-    //                 const cell = tbody.appen("td");
-    //                 cell.text(row[key]);
-    //             }
-    //         })
-    // }
-    // }
-
     function filterData (tableData) {
         d3.event.preventDefault;
         var filteredData = data;
@@ -142,14 +94,4 @@ loadTableRows(tableData);
     }
         
 
-        //Create New Table
-    //filteredData.forEach(function(selections){
-        //Add one table row for each UFO Sighting filtered
-        // var row = tbody.append("tr");
-        // //Use Object.entries to append a cell to the row for each value
-        // Object.entries(selections).forEach(function([key, value]) {
-        //     console.log(key,value);
-        //     var cell = row.append("td");
-        //     cell.text(value);
-        // });
-    //})
+        
