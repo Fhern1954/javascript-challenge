@@ -13,20 +13,9 @@ tableData.forEach(row => {
         cell.text(row[key]);
     }
 });
-    //Add one table row for each sighting
-    //var row = tbody.append("tr");
+    
 
-    //Use Object.entries to collect each values for each UFO Sighting
-//     Object.entries(ufoSighting).forEach(function([key, value]) {
-//         console.log(key, value);
-//         // Add a cell to each row for each value
-//         var cell = row.append("td");
-//         cell.text(value);
-//     });
-// });
-
-
-//Button
+//Event Listeners
 var button = d3.select("#filter-btn");
 var form = d3.select("#date-form");
 button.on("click", filterData);
@@ -48,7 +37,7 @@ function filterData() {
     console.log(filteredData);
 
     filteredData.forEach(function(selections){
-    //Add one tbale row for each UFO Sighting filtered
+    //Add one table row for each UFO Sighting filtered
     var row = tbody.append("tr");
     //Use Object.entries to append a cell to the row for each value
     Object.entries(selections).forEach(function([key, value]) {

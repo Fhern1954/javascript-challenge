@@ -17,7 +17,13 @@ tableData.forEach(row => {
     }
 });
 
+//Event Listeners
+var button = d3.select("#filter-btn");
+var form = d3.select("#user-form");
+button.on("click", filterData);
+form.on("submit", filterData);
 
+//Collect input Elements
 var userDate = d3.select("#datetime");
 var userCity = d3.select("#city");
 var userState = d3.select("#state");
@@ -47,11 +53,7 @@ function loadTableRows(tableData) {
         //Call the function
 loadTableRows(tableData);
 
-//Event Listeners
-var button = d3.select("#filter-btn");
-var form = d3.select("#user-form");
-button.on("click", filterData);
-form.on("submit", filterData);
+
 
 // btnSearch.on("click", function(event) { 
     console.log("button clicked");
@@ -109,23 +111,24 @@ form.on("submit", filterData);
             searchDate = userDate.property("value");
             console.log(searchDate);
             filteredData = filteredData.filter(sighting => sighting.datetime === searchDate);
-        }
+        }        
         if (userCity !== null) {
             searchCity = userCity.property("value").toLowerCase();
             filteredData = filteredData.filter(sighting => sighting.city === searchCity);
-        }
+        }        
         if (userState !== null) {
             searchState = userState.property("value").toLowerCase();
             filteredData = filteredData.filter(sighting => sighting.state === searchState);
-        }
+        }       
         if (userCountry !== null) {
             searchCountry = userCountry.property("value").toLowerCase();
             filteredData = filteredData.filter(sighting => sighting.country === searchCountry);
-        }
+        }        
         if (userShape !== null) {
             searchShape = userShape.property("value").toLowerCase();
             filteredData = filteredData.filter(sighting => sighting.shape === searchShape);
         }
+        else {filteredData = filteredData}
         console.log(filteredData);
     loadTableRows(filteredData);
     }
